@@ -508,11 +508,9 @@ func (s *Service) getSubnetTagParams(unmanagedVPC bool, id string, public bool, 
 	var role string
 	additionalTags := make(map[string]string)
 
-	if !unmanagedVPC {
+	if !unmanagedVPC || s.scope.TagUnmanagedNetworkResources() {
 		additionalTags = s.scope.AdditionalTags()
-	}
 
-	if s.scope.TagUnmanagedNetworkResources() {
 		if public {
 			role = infrav1.PublicRoleTagValue
 			additionalTags[externalLoadBalancerTag] = "1"
