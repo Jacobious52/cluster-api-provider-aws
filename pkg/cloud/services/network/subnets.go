@@ -520,7 +520,7 @@ func (s *Service) getSubnetTagParams(unmanagedVPC bool, id string, public bool, 
 			role = infrav1.PrivateRoleTagValue
 			additionalTags[internalLoadBalancerTag] = "1"
 		}
-		
+
 		// Add tag needed for Service type=LoadBalancer
 		additionalTags[infrav1.ClusterAWSCloudProviderTagKey(s.scope.KubernetesClusterName())] = string(infrav1.ResourceLifecycleShared)
 	}
